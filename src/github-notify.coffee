@@ -228,7 +228,7 @@ private_messages = (robot, users, message) ->
 private_message = (robot, user, message) ->
   message = '' + message
   user = get_pm_user user
-  console.log 'try to send DM to user', user.name
+  console.log 'try to send DM to user', user
 #   room = robot.adapter.client.rtm.dataStore.getDMByName user.name
   robot.messageRoom user.name, message
 
