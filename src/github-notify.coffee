@@ -329,6 +329,9 @@ module.exports = (robot) ->
     else if ((event is 'issue_comment' or event is 'pull_request_review_comment') and payload.action is 'created')
       userInfos = on_commented_issue(robot, payload.comment, payload.repository, mentions_users)
       private_messages robot, userInfos, "You have been mentioned in a new comment by #{payload.comment.user.login} in #{payload.repository.full_name.toLowerCase()}: #{payload.comment.html_url}."
+    else if ((event is 'issue_comment' or event is 'pull_request_review') and payload.action is 'submitted')
+      userInfos = on_commented_issue(robot, payload.review, payload.repository, mentions_users)
+      private_messages robot, userInfos, "You have been mentioned in a new comment by #{payload.review.user.login} in #{payload.repository.full_name.toLowerCase()}: #{payload.review.html_url}."
     else if ((event is 'issues' or event is 'pull_request') and payload.action is 'assigned')
       if event is 'issues'
         issue = payload.issue
