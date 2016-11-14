@@ -291,9 +291,9 @@ module.exports = (robot) ->
     slackUsername = req.params.room
 #     robot.messageRoom channel, "this is a test message"
 # robot.send {room: user.name, user: user}, message
-room = robot.adapter.client.rtm.dataStore.getDMByName slackUsername
-console.log 'Test slack hook for room', slackUsername, room
-robot.messageRoom room.id, "Hello, this is a private message!"
+    room = robot.adapter.client.rtm.dataStore.getDMByName slackUsername
+    console.log 'Test slack hook for room', slackUsername, room
+    robot.messageRoom room.id, "Hello, this is a private message!"
     res.send 'OK'
 
   # handle new comments and new issue assignments
