@@ -61,7 +61,7 @@ GITHUB_NOTIFY_PRE = 'github-notify-'
 #
 # Returns the resolved username.
 resolve_user = (user) ->
-  name = user.name.replace('@', '')
+  name = user.name.replace('@', '').trim()
   resolve_cred = (u) -> u.githubLogin
   resolve_env = (n) -> process.env["HUBOT_GITHUB_USER_#{n.replace(/\s/g, '_').toUpperCase()}"]
   resolve_cred(user) or resolve_env(name) or resolve_env(name.split(' ')[0]) or
