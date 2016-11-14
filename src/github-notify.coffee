@@ -288,12 +288,12 @@ module.exports = (robot) ->
       private_message robot, get_pm_user(msg.message.user), reply
 
   robot.router.post '/hubot/slackhook/:room', (req, res) ->
-    channel = req.params.room
-    console.log 'Test slack hook for channel', channel
-    robot.messageRoom channel, "this is a test message"
+    slackUsername = req.params.room
+#     robot.messageRoom channel, "this is a test message"
 # robot.send {room: user.name, user: user}, message
-# room = robot.adapter.client.rtm.dataStore.getDMByName res.message.user.name
-# robot.messageRoom room.id, "Hello, this is a private message!"
+room = robot.adapter.client.rtm.dataStore.getDMByName slackUsername
+console.log 'Test slack hook for room', slackUsername, room
+robot.messageRoom room.id, "Hello, this is a private message!"
     res.send 'OK'
 
   # handle new comments and new issue assignments
