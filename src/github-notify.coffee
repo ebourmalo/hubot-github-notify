@@ -228,9 +228,9 @@ private_messages = (robot, users, message) ->
 private_message = (robot, user, message) ->
   message = '' + message
   user = get_pm_user user
-  console.log 'try to send DM to user', user
+  console.log 'try to send DM to user', user.name, user.id
 #   room = robot.adapter.client.rtm.dataStore.getDMByName user.name
-  robot.messageRoom user.name, message
+  robot.messageRoom user.id, message
 
 # Delete the reply_to information from a given User,
 # so that it is possible to force a private message on send.
