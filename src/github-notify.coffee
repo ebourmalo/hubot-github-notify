@@ -228,6 +228,7 @@ private_messages = (robot, users, message) ->
 private_message = (robot, user, message) ->
   message = '' + message
   user = get_pm_user user
+  console.log 'try to send DM to user', user
   robot.send {room: user.name, user: user}, message
 
 # Delete the reply_to information from a given User,
