@@ -294,12 +294,11 @@ module.exports = (robot) ->
     room = robot.adapter.client.rtm.dataStore.getDMByName slackUsername
 
     if (!room) {
-      return robot.adapter.client.im.open(message.user, function (err, result) {
+      return robot.adapter.client.im.open message.user, (err, result) ->
         room = result.channel.id;
         console.log 'Test slack hook for room', slackUsername, room
         robot.messageRoom room.id, "Hello, this is a private message for test!"
         res.send 'OK'
-      });
     }
 
     console.log 'Test slack hook for room', slackUsername, room
