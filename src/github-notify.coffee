@@ -291,9 +291,17 @@ module.exports = (robot) ->
 
   robot.router.post '/hubot/slackhook/:room', (req, res) ->
     slackUsername = req.params.room
-#     robot.messageRoom channel, "this is a test message"
-# robot.send {room: user.name, user: user}, message
     room = robot.adapter.client.rtm.dataStore.getDMByName slackUsername
+
+    if (!room) {
+      return robot.adapter.client.im.open(message.user, function (err, result) {
+        room = result.channel.id;
+        console.log 'Test slack hook for room', slackUsername, room
+        robot.messageRoom room.id, "Hello, this is a private message for test!"
+        res.send 'OK'
+      });
+    }
+
     console.log 'Test slack hook for room', slackUsername, room
     robot.messageRoom room.id, "Hello, this is a private message!"
     res.send 'OK'
